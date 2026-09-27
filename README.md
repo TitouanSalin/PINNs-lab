@@ -2,9 +2,11 @@
 
 ## Team
 
-- [Team member 1]
-- [Team member 2]
-- [Team member 3]
+Team Name: the best team ever
+
+- Saanya Manoj
+- Dorsa Molaverdikhani
+- Titouan Salin
 
 ## Topic and central question
 
