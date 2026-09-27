@@ -30,8 +30,6 @@ Our central question is:
 
 > **How does increasing the difficulty of a physical system affect a PINN's ability to recover the correct solution, and can a simple change in the training strategy mitigate the resulting failure?**
 
-We also want to investigate whether a small physics loss necessarily implies that the learned solution is accurate.
-
 ---
 
 ## Papers
@@ -48,7 +46,7 @@ Our investigation will primarily build on:
 
    This paper studies cases where standard PINN training fails as the underlying physical problem becomes more difficult, and explores strategies such as curriculum training.
 
-We may also use the other physics-informed learning papers from the course for additional context, but the lab will remain focused on PINNs rather than equation discovery.
+We will also probably use other physics-informed learning papers for the last notebook on possible extensions on PINNs failure.
 
 ---
 
@@ -122,21 +120,35 @@ The goal is to reproduce the observation that a PINN can perform well in an easi
 
 ---
 
-### 3. Extension — Can a different training strategy reduce the failure?
+### 3. Extension — Can we mitigate PINN failure?
 
-Our planned extension is **curriculum training**.
+The third notebook will investigate whether a controlled modification of the standard PINN training procedure can mitigate the failure observed in the previous experiment.
 
-Instead of training directly on a difficult target such as $\beta=30$, we will gradually increase the difficulty, for example:
+One possibility is **curriculum training**, following the idea explored by Krishnapriyan et al. Instead of training directly on a difficult target such as $\beta = 30$, we would progressively increase the difficulty:
 
-$$
+```math
 1 \rightarrow 5 \rightarrow 10 \rightarrow 20 \rightarrow 30.
-$$
+```
 
-We will compare direct training against curriculum training while keeping the network architecture and final physical problem fixed.
+We could then compare direct training and curriculum training while keeping the network architecture and final physical problem fixed. This would help us study whether the optimization path itself has an important effect on the final solution.
 
-This will let us study whether the optimization path itself has an important effect on the final solution.
+We also plan to explore other approaches proposed in the PINN literature for improving training and robustness. Possible directions include:
 
----
+- **Adaptive balancing of the loss terms and gradients**, motivated by *Understanding and Mitigating Gradient Pathologies in Physics-Informed Neural Networks* (Wang et al.), which studies imbalanced gradients between the different components of the PINN loss and proposes adaptive weighting strategies.  
+  https://arxiv.org/abs/2001.04536
+
+- **Adaptive weighting based on training dynamics**, motivated by *When and Why PINNs Fail to Train: A Neural Tangent Kernel Perspective* (Wang et al.), which analyzes differences in the convergence rates of the different PINN loss components using the Neural Tangent Kernel.  
+  https://arxiv.org/abs/2007.14527
+
+- **Self-adaptive PINNs**, following *Self-Adaptive Physics-Informed Neural Networks using a Soft Attention Mechanism* (McClenny and Braga-Neto), where trainable weights allow the model to focus more strongly on regions of the domain that are difficult to learn.  
+  https://arxiv.org/abs/2009.04544
+
+- **Domain decomposition with XPINNs**, following Jagtap and Karniadakis, where the space-time domain is divided into subdomains handled by separate neural networks. This provides another possible way of handling more difficult PDE regimes.  
+  https://github.com/AmeyaJagtap/XPINNs/blob/master/XPINNs_Paper.pdf
+
+- We might also take a look at other papers.
+
+For the final lab, we will select one of these modifications and compare it against the standard PINN under the same difficult regime.
 
 ## Interactive visualization and exploration
 
@@ -158,11 +170,7 @@ For the convection experiment, we plan to provide an interactive control for $\b
 - PDE residual;
 - quantitative relative error.
 
-We also plan to provide a direct comparison between **standard training** and **curriculum training** for the same difficult regime.
-
-The main class-time path will use cached models and arrays so that interactions update quickly without requiring full retraining. At least one lightweight experiment in the toy notebook will be computed live, for example by changing the physics-loss weight or number of collocation points and running a small number of additional optimization steps.
-
-Fallback plots and cached outputs will be included so that the investigation remains usable even if live computation fails.
+In the last notebook, we have not planned any visualization yet, as we need to study further the possible extensions.
 
 The intended exploration should help another group answer the following questions:
 
