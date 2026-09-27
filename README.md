@@ -12,7 +12,7 @@
 
 PINNs train a neural network not only from observations, but also by penalizing violations of a known physical law. For a PDE written abstractly as
 
-$$\mathcal{N}[u](x,t)=0,$$
+$\mathcal{N}[u](x,t)=0,$
 
 the training objective typically combines a data or boundary-condition loss with a physics residual:
 
