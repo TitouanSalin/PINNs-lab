@@ -174,9 +174,6 @@ For the convection experiment, we plan to provide an interactive control for $\b
 
 In the last notebook, we have not planned any visualization yet, as we need to study further the possible extensions.
 
-The intended exploration should help another group answer the following questions:
+### AI Usage Acknowledgement
 
-- When does physics-informed supervision help compared with data-only fitting?
-- How does PINN performance change as the physical regime becomes harder?
-- Does a small PDE residual necessarily imply an accurate solution?
-- Can changing only the training strategy improve the result?
+We used generative AI tools to help organize, clarify, and format our initial ideas for this README.
